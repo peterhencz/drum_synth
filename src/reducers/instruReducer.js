@@ -11,7 +11,6 @@ export default (state = intitialState, { type, payload }) => {
         sound: payload,
       };
     case GET_SOUND:
-      console.log("kisfaszom");
       return {
         ...state,
       };

@@ -3,3 +3,22 @@
   width: 15em;
   height: 5em;
 }
+
+button.instrument-button {
+  background-color: white;
+  border-radius: 2px;
+  border: 1px solid #f0f6ff;
+  margin: 0.5em;
+  color: #333;
+  outline: none;
+}
+
+button.instrument-button:hover {
+  -webkit-box-shadow: 0 4px 6px -6px tomato;
+  -moz-box-shadow: 0 4px 6px -6px tomato;
+  box-shadow: 0 4px 6px -6px tomato;
+  transition: 0.2s ease-in-out;
+  color: tomato;
+  background-color: transparent;
+  border: 1px solid tomato;
+}

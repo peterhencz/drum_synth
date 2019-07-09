@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import Pad from "../Pad/Pad";
-import InstrumentSelect from "../InstrumentSelect/InstrumentSelect";
 
 const Board = props => (
   <div className="board">

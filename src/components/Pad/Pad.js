@@ -4,12 +4,12 @@ import { bindActionCreators } from "redux";
 import { getSound } from "../../actions/instruAction";
 import kick from "../../assets/drum_sounds/dm_kick.mp3";
 import hihat from "../../assets/drum_sounds/dm_closed_hh.mp3";
+import snare from "../../assets/drum_sounds/dm_snare_clap.mp3";
 import * as Tone from "tone";
 
 class Pad extends Component {
   constructor(props) {
     super(props);
-    console.log("padprops: ", this.props);
     this.state = {
       label: this.props.label,
     };
@@ -17,16 +17,35 @@ class Pad extends Component {
 
   componentDidMount() {
     this.props.getSound();
-    console.log("na: ", this.props.sound.sound);
+    console.log("na: ", this.props.sound);
+  }
+
+  componentDidUpdate(prevProps) {
+    console.log("update: ", this.props.sound.sound);
+    if (this.props.sound.sound !== prevProps.sound.sound) {
+      this.handleSwitch(this.props.sound.sound);
+    }
+  }
+
+  handleSwitch(param) {
+    switch (param) {
+      case "kick":
+        return kick;
+
+      case "hihat":
+        return hihat;
+
+      default:
+        return snare;
+    }
   }
 
   bing = new Tone.Player({
-    url: kick,
+    url: this.handleSwitch(this.props.sound.sound),
   }).toMaster();
 
   playSound = () => {
     console.log("CCCCCCC: ", this.props.sound.sound);
-
     this.bing.autostart = true;
     this.bing.start();
   };

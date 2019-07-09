@@ -7,6 +7,10 @@ import { setSound } from "../../actions";
 import * as Tone from "tone";
 
 class InstrumentSelect extends Component {
+  state = {
+    buttonClass: "instrument-button",
+  };
+
   handleSetSound = sound => {
     this.props.setSound(sound);
   };
@@ -14,8 +18,16 @@ class InstrumentSelect extends Component {
   render() {
     return (
       <div className="instrument-select">
-        <button onClick={() => this.handleSetSound('kick')}>kick</button>
-        <button onClick={() => this.handleSetSound('hihat')}>hi-hat</button>
+        <button
+          className={this.state.buttonClass}
+          onClick={() => this.handleSetSound('kick')}>
+          kick
+        </button>
+        <button
+          className={this.state.buttonClass}
+          onClick={() => this.handleSetSound('hihat')}>
+          hi-hat
+        </button>
       </div>
     );
   }
