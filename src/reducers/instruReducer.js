@@ -1,4 +1,4 @@
-import { SET_SOUND } from "../actions/types";
+import { SET_SOUND, GET_SOUND } from "../actions/types";
 
 const intitialState = { sound: "kick" };
 
@@ -9,6 +9,11 @@ export default (state = intitialState, { type, payload }) => {
       return {
         ...state,
         sound: payload,
+      };
+    case GET_SOUND:
+      console.log("kisfaszom");
+      return {
+        ...state,
       };
     default:
       return state;
