@@ -1,12 +1,22 @@
 import React from "react";
-import Test from "./components/Test";
-import "./App.scss";
+import { Provider } from "react-redux";
+import { createStore, applyMiddleware } from "redux";
+import reducers from "./reducers";
+import ReduxThunk from "redux-thunk";
+
+import Maschine from "./components/Maschine/Maschine";
+
+import "./index.scss";
+
+const store = createStore(reducers, {}, applyMiddleware(ReduxThunk));
 
 function App() {
   return (
-    <div className="App c">
-      <Test />
-    </div>
+    <Provider store={store}>
+      <div className="c">
+        <Maschine />
+      </div>
+    </Provider>
   );
 }
 

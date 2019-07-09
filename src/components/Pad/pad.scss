@@ -1,0 +1,34 @@
+.pad {
+  margin: 0.5em;
+  width: 5em;
+  height: 5em;
+  background: white;
+  -webkit-box-shadow: 0 4px 6px -6px #777;
+  -moz-box-shadow: 0 4px 6px -6px #777;
+  box-shadow: 0 4px 6px -6px #777;
+  transition: 0.2s ease-in-out;
+  opacity: 0.7;
+  border-radius: 2px;
+  display: flex;
+  align-items: flex-end;
+}
+
+.pad:hover {
+  background: white;
+  opacity: 1;
+}
+
+.pad:active {
+  transform: scale(0.98);
+  background: tomato;
+  opacity: 1;
+}
+
+p.pad-label {
+  font-size: 0.75em;
+  padding: 0.5em;
+  font-family: "Roboto Mono", monospace;
+  margin: 0;
+  color: #000;
+  opacity: 0.2;
+}
