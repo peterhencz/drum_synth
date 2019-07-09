@@ -22,6 +22,7 @@ class Pad extends Component {
 
   componentDidUpdate(prevProps) {
     console.log("update: ", this.props.sound.sound);
+    console.log("prevP: ", prevProps.sound.sound);
     if (this.props.sound.sound !== prevProps.sound.sound) {
       this.handleSwitch(this.props.sound.sound);
     }

@@ -5,7 +5,7 @@ const intitialState = { sound: "kick" };
 export default (state = intitialState, { type, payload }) => {
   switch (type) {
     case SET_SOUND:
-      console.log("Your choice is Angular!", payload);
+      console.log("Yolo!", payload);
       return {
         ...state,
         sound: payload,
