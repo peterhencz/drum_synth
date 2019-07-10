@@ -1,7 +1,14 @@
 .fx_panel {
+  background: white;
   width: 16em;
   height: auto;
   padding: 0.5em;
   margin: 1em;
   border: 1px solid #d8bc41;
+}
+
+.fx_title {
+  font-size: 0.6em;
+  color: #666;
+  margin: 0;
 }

@@ -10,39 +10,30 @@ class FXPanel extends Component {
     this.props.setFx(fx);
   };
 
-  delay = new Tone.PingPongDelay({
-    delayTime: 0.25,
-    maxDelayTime: 0.9,
-    feedback: 0.8,
-    wet: 0.9,
-  }).toMaster();
-
-  reverb = new Tone.Freeverb({
-    roomSize: 0.9,
-    dampeding: 9000,
-    wet: 0.9,
-  }).toMaster();
-
   render() {
     return (
       <div className="fx_panel">
-        FX
-        <button
-          className="fx_button"
-          onClick={() => this.handleSetFx(this.delay)}>
+        <p>FX</p>
+        <button className="fx_button" onClick={() => this.handleSetFx("delay")}>
           delay
         </button>
         <FxSlider />
+        <p className="fx_title">delayTime</p>
         <FxSlider />
+        <p className="fx_title">feedback</p>
         <FxSlider />
+        <p className="fx_title">wet</p>
         <button
           className="fx_button"
-          onClick={() => this.handleSetFx(this.reverb)}>
+          onClick={() => this.handleSetFx("reverb")}>
           reverb
         </button>
         <FxSlider />
+        <p className="fx_title">roomSize</p>
         <FxSlider />
+        <p className="fx_title">dampeding</p>
         <FxSlider />
+        <p className="fx_title">wet</p>
       </div>
     );
   }

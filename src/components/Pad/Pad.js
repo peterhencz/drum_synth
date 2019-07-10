@@ -21,12 +21,10 @@ class Pad extends Component {
   componentDidMount() {
     this.props.getSound();
     this.props.getFx();
-    console.log("na: ", this.props.sound, this.props.fx);
   }
 
   componentDidUpdate(prevProps) {
     const { sound, fx } = this.props.sound;
-    console.log("cupdate: ", this.props);
     if (sound !== prevProps.sound.sound) {
       this.handleSwitchSound(sound);
     }
@@ -39,15 +37,12 @@ class Pad extends Component {
     url: this.handleSwitchSound(this.props.sound.sound),
   }).connect(this.handleSwitchFx(this.props.fx.fx));
 
-  bing = new Tone.Player({
-    url: this.handleSwitchSound(this.props.sound.sound),
-  }).connect(this.handleSwitchFx(this.props.fx.fx));
-
   handleSwitchFx(param) {
     switch (param) {
-      case "delay":
+      case delay:
         return delay;
-      case "reverb":
+      case reverb:
+        console.log("param:", param);
         console.log(reverb);
         return reverb;
       default:
@@ -62,12 +57,14 @@ class Pad extends Component {
       case "hihat":
         return hihat;
       default:
-        return kick;
+        return snare;
     }
   }
 
   playSound = () => {
     console.log("bing - ", this.bing);
+    console.log("prop: ", this.props.fx.fx);
+    console.log("kisfaszom :", this.props.sound);
     this.bing.start();
   };
 

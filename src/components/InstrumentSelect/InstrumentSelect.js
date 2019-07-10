@@ -19,7 +19,7 @@ class InstrumentSelect extends Component {
   render() {
     return (
       <div className="instrument-select">
-        INSTR
+        <p>INSTRU</p>
         <button
           className={this.state.buttonClass}
           onClick={() => this.handleSetSound("kick")}>
@@ -29,6 +29,11 @@ class InstrumentSelect extends Component {
           className={this.state.buttonClass}
           onClick={() => this.handleSetSound("hihat")}>
           hi-hat
+        </button>
+        <button
+          className={this.state.buttonClass}
+          onClick={() => this.handleSetSound("snare")}>
+          snare
         </button>
       </div>
     );

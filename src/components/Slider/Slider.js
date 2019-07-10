@@ -3,7 +3,7 @@ import Slider from "react-input-slider";
 
 function FxSlider() {
   console.log("cica");
-  const [state, setState] = useState({ x: 0.3 });
+  const [state, setState] = useState({ x: Math.random() / 3 + 0.1 });
 
   return (
     <div className="costum-input-range-slider">
@@ -20,17 +20,22 @@ function FxSlider() {
         styles={{
           track: {
             width: "80%",
-            height: 2,
-            backgroundColor: "#CBDCED",
+            height: 3,
+            backgroundColor: "#FbFbFb",
             margin: "1em",
+            borderRadius: 0,
           },
           active: {
-            backgroundColor: "#5487B4",
+            background:
+              "linear-gradient(-108deg, rgb(254, 74, 74), rgb(239, 165, 57))",
+            borderRadius: 0,
           },
           thumb: {
-            backgroundColor: "#527DA3",
-            width: 12,
-            height: 12,
+            backgroundColor: "#FE4A4A",
+            width: 10,
+            height: 3,
+            borderRadius: 0,
+            boxShadow: "none",
           },
         }}
       />
