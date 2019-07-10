@@ -19,6 +19,7 @@ class InstrumentSelect extends Component {
   render() {
     return (
       <div className="instrument-select">
+        INSTR
         <button
           className={this.state.buttonClass}
           onClick={() => this.handleSetSound("kick")}>

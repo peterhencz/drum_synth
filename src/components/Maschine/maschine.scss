@@ -1,5 +1,13 @@
+.c {
+  display: grid;
+  place-items: center center;
+  height: 100vh;
+}
+
 .maschine {
+  display: flex;
+  flex-direction: row;
   border: 1px solid salmon;
-  width: 70%;
-  height: 80%;
+  width: 760px;
+  height: 760px;
 }

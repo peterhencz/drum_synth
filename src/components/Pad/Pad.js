@@ -1,15 +1,18 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { getSound } from "../../actions/instruAction";
+import { getSound, getFx } from "../../actions/instruAction";
+import { delay, reverb } from "../FXs";
 import kick from "../../assets/drum_sounds/dm_kick.mp3";
 import hihat from "../../assets/drum_sounds/dm_closed_hh.mp3";
 import snare from "../../assets/drum_sounds/dm_snare_clap.mp3";
+
 import * as Tone from "tone";
 
 class Pad extends Component {
   constructor(props) {
     super(props);
+    console.log("pad props: ", this.props);
     this.state = {
       label: this.props.label,
     };
@@ -17,37 +20,54 @@ class Pad extends Component {
 
   componentDidMount() {
     this.props.getSound();
-    console.log("na: ", this.props.sound);
+    this.props.getFx();
+    console.log("na: ", this.props.sound, this.props.fx);
   }
 
   componentDidUpdate(prevProps) {
-    console.log("update: ", this.props.sound.sound);
-    console.log("prevP: ", prevProps.sound.sound);
-    if (this.props.sound.sound !== prevProps.sound.sound) {
-      this.handleSwitch(this.props.sound.sound);
+    const { sound, fx } = this.props.sound;
+    console.log("cupdate: ", this.props);
+    if (sound !== prevProps.sound.sound) {
+      this.handleSwitchSound(sound);
     }
-  }
-
-  handleSwitch(param) {
-    switch (param) {
-      case "kick":
-        return kick;
-
-      case "hihat":
-        return hihat;
-
-      default:
-        return snare;
+    if (fx !== prevProps.fx.fx) {
+      this.handleSwitchFx(fx);
     }
   }
 
   bing = new Tone.Player({
-    url: this.handleSwitch(this.props.sound.sound),
-  }).toMaster();
+    url: this.handleSwitchSound(this.props.sound.sound),
+  }).connect(this.handleSwitchFx(this.props.fx.fx));
+
+  bing = new Tone.Player({
+    url: this.handleSwitchSound(this.props.sound.sound),
+  }).connect(this.handleSwitchFx(this.props.fx.fx));
+
+  handleSwitchFx(param) {
+    switch (param) {
+      case "delay":
+        return delay;
+      case "reverb":
+        console.log(reverb);
+        return reverb;
+      default:
+        return delay;
+    }
+  }
+
+  handleSwitchSound(param) {
+    switch (param) {
+      case "kick":
+        return kick;
+      case "hihat":
+        return hihat;
+      default:
+        return kick;
+    }
+  }
 
   playSound = () => {
-    console.log("CCCCCCC: ", this.props.sound.sound);
-    this.bing.autostart = true;
+    console.log("bing - ", this.bing);
     this.bing.start();
   };
 
@@ -63,6 +83,7 @@ class Pad extends Component {
 const mapStateToProps = state => {
   return {
     sound: state.sound,
+    fx: state.fx,
   };
 };
 
@@ -70,6 +91,7 @@ const mapDispatchToProps = dispatch => {
   return bindActionCreators(
     {
       getSound,
+      getFx,
     },
     dispatch
   );

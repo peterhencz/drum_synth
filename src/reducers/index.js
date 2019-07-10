@@ -3,4 +3,5 @@ import instruReducer from "./instruReducer";
 
 export default combineReducers({
   sound: instruReducer,
+  fx: instruReducer,
 });
