@@ -5,25 +5,37 @@ import { setFx } from "../../actions";
 import FxSlider from "../Slider/Slider";
 
 class FXPanel extends Component {
-  state = { fxStatus: false };
+  state = { delayFxStatus: false, reverbFxStatus: false };
 
   handleSetFx = fx => {
-    if (this.state.fxStatus !== false) {
+    if (this.state.fxStatus === false) {
       this.props.setFx(fx);
-      this.setState({ fxStatus: false });
-      console.log("on––", this.state);
+      this.setState({
+        [fx + "FxStatus"]: true,
+        [fx + "ButtonClass"]: "fx_button-on",
+      });
     } else {
       this.props.setFx("zero");
-      this.setState({ fxStatus: true });
-      console.log("off––", this.state);
+      this.setState({
+        [fx + "FxStatus"]: false,
+        [fx + "ButtonClass"]: "fx_button",
+      });
     }
   };
 
   render() {
+    const delayButtonClass = this.state.delayFxStatus
+      ? "fx_button-on"
+      : "fx_button";
+    const reverbButtonClass = this.state.reverbFxStatus
+      ? "fx_button-on"
+      : "fx_button";
     return (
       <div className="fx_panel">
         <p>FX</p>
-        <button className="fx_button" onClick={() => this.handleSetFx("delay")}>
+        <button
+          className={delayButtonClass}
+          onClick={() => this.handleSetFx("delay")}>
           delay
         </button>
         <FxSlider />
@@ -33,7 +45,7 @@ class FXPanel extends Component {
         <FxSlider />
         <p className="fx_title">wet</p>
         <button
-          className="fx_button"
+          className={reverbButtonClass}
           onClick={() => this.handleSetFx("reverb")}>
           reverb
         </button>
