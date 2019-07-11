@@ -12,20 +12,19 @@ import * as Tone from "tone";
 class Pad extends Component {
   constructor(props) {
     super(props);
-    console.log("pad props: ", this.props);
     this.state = {
       label: this.props.label,
+      soundstate: props.sound.sound,
     };
   }
 
   componentDidMount() {
-    this.props.getSound();
     this.props.getFx();
   }
 
   componentDidUpdate(prevProps) {
     const { sound, fx } = this.props.sound;
-    if (sound !== prevProps.sound.sound) {
+    if (sound !== prevProps.sound) {
       this.handleSwitchSound(sound);
     }
     if (fx !== prevProps.fx.fx) {
@@ -33,9 +32,9 @@ class Pad extends Component {
     }
   }
 
-  bing = new Tone.Player({
-    url: this.handleSwitchSound(this.props.sound.sound),
-  }).connect(this.handleSwitchFx(this.props.fx.fx));
+  // bing = new Tone.Player({
+  //   url: this.handleSwitchSound(this.props.sound.sound),
+  // }).connect(this.handleSwitchFx(this.props.fx.fx));
 
   handleSwitchFx(param) {
     switch (param) {
@@ -51,8 +50,10 @@ class Pad extends Component {
   }
 
   handleSwitchSound(param) {
+    console.log("param: ", param);
     switch (param) {
       case "kick":
+        this.setState({ soundstate: "kick" });
         return kick;
       case "hihat":
         return hihat;
@@ -61,10 +62,14 @@ class Pad extends Component {
     }
   }
 
+  bing = new Tone.Player({
+    url: this.handleSwitchSound(this.props.sound.sound),
+  }).toMaster();
+
   playSound = () => {
     console.log("bing - ", this.bing);
     console.log("prop: ", this.props.fx.fx);
-    console.log("kisfaszom :", this.props.sound);
+    console.log("kisfaszom :", this.props);
     this.bing.start();
   };
 
