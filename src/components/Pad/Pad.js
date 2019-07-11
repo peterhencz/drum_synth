@@ -37,10 +37,11 @@ class Pad extends Component {
   // }).connect(this.handleSwitchFx(this.props.fx.fx));
 
   handleSwitchFx(param) {
+    console.log("param", param);
     switch (param) {
-      case delay:
+      case "delay":
         return delay;
-      case reverb:
+      case "reverb":
         console.log("param:", param);
         console.log(reverb);
         return reverb;
@@ -53,7 +54,6 @@ class Pad extends Component {
     console.log("param: ", param);
     switch (param) {
       case "kick":
-        this.setState({ soundstate: "kick" });
         return kick;
       case "hihat":
         return hihat;
@@ -62,15 +62,16 @@ class Pad extends Component {
     }
   }
 
-  bing = new Tone.Player({
-    url: this.handleSwitchSound(this.props.sound.sound),
-  }).toMaster();
-
   playSound = () => {
-    console.log("bing - ", this.bing);
-    console.log("prop: ", this.props.fx.fx);
-    console.log("kisfaszom :", this.props);
-    this.bing.start();
+    const url = this.handleSwitchSound(this.props.sound.sound);
+    const fx = this.handleSwitchFx(this.props.fx.fx);
+
+    new Tone.Player({
+      url,
+      autostart: true,
+    })
+      .connect(fx)
+      .toMaster();
   };
 
   render() {
