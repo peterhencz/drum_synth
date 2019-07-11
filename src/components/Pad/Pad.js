@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { getSound, getFx } from "../../actions/instruAction";
-import { delay, reverb } from "../FXs";
+import { delay, reverb, zero } from "../FXs";
 import kick from "../../assets/drum_sounds/dm_kick.mp3";
 import hihat from "../../assets/drum_sounds/dm_closed_hh.mp3";
 import snare from "../../assets/drum_sounds/dm_snare_clap.mp3";
@@ -32,33 +32,27 @@ class Pad extends Component {
     }
   }
 
-  // bing = new Tone.Player({
-  //   url: this.handleSwitchSound(this.props.sound.sound),
-  // }).connect(this.handleSwitchFx(this.props.fx.fx));
-
-  handleSwitchFx(param) {
-    console.log("param", param);
-    switch (param) {
+  handleSwitchFx(fx) {
+    switch (fx) {
       case "delay":
         return delay;
       case "reverb":
-        console.log("param:", param);
-        console.log(reverb);
         return reverb;
       default:
-        return delay;
+        return zero;
     }
   }
 
-  handleSwitchSound(param) {
-    console.log("param: ", param);
-    switch (param) {
+  handleSwitchSound(sound) {
+    switch (sound) {
       case "kick":
         return kick;
       case "hihat":
         return hihat;
-      default:
+      case "snare":
         return snare;
+      default:
+        return kick;
     }
   }
 

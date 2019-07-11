@@ -3,11 +3,20 @@ import { connect } from "react-redux";
 
 import { setFx } from "../../actions";
 import FxSlider from "../Slider/Slider";
-import * as Tone from "tone";
 
 class FXPanel extends Component {
+  state = { fxStatus: false };
+
   handleSetFx = fx => {
-    this.props.setFx(fx);
+    if (this.state.fxStatus !== false) {
+      this.props.setFx(fx);
+      this.setState({ fxStatus: false });
+      console.log("on––", this.state);
+    } else {
+      this.props.setFx("zero");
+      this.setState({ fxStatus: true });
+      console.log("off––", this.state);
+    }
   };
 
   render() {

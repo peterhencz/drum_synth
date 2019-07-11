@@ -1,11 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import kick from "../../assets/drum_sounds/dm_kick.mp3";
-import hihat from "../../assets/drum_sounds/dm_closed_hh.mp3";
-import snare from "../../assets/drum_sounds/dm_snare_clap.mp3";
-import { setSound } from "../../actions";
 
-import * as Tone from "tone";
+import { setSound } from "../../actions";
 
 class InstrumentSelect extends Component {
   state = {
