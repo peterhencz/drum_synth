@@ -57,7 +57,9 @@ class Pad extends Component {
   }
 
   playSound = () => {
+    console.log('url: ', this.url)
     const url = this.handleSwitchSound(this.props.sound.sound);
+    console.log('props fx: ', this.props.fx)
     const fx = this.handleSwitchFx(this.props.fx.fx);
 
     new Tone.Player({
