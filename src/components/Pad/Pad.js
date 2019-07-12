@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { getSound, getFx } from "../../actions/instruAction";
-import { delay, reverb, zero } from "../FXs";
+import { delay, reverb } from "../FXs";
 import kick from "../../assets/drum_sounds/dm_kick.mp3";
 import hihat from "../../assets/drum_sounds/dm_closed_hh.mp3";
 import snare from "../../assets/drum_sounds/dm_snare_clap.mp3";
@@ -32,36 +32,42 @@ class Pad extends Component {
     }
   }
 
-  handleSwitchFx(fx) {
-    switch (fx) {
+  // bing = new Tone.Player({
+  //   url: this.handleSwitchSound(this.props.sound.sound),
+  // }).connect(this.handleSwitchFx(this.props.fx.fx));
+
+  handleSwitchFx(param) {
+    console.log("param", param);
+    switch (param) {
       case "delay":
         return delay;
       case "reverb":
+        console.log("param:", param);
+        console.log(reverb);
         return reverb;
       default:
-        return zero;
+        return delay;
     }
   }
 
-  handleSwitchSound(sound) {
-    switch (sound) {
+  handleSwitchSound(param) {
+    console.log("param: ", param);
+    switch (param) {
       case "kick":
         return kick;
       case "hihat":
         return hihat;
-      case "snare":
-        return snare;
       default:
-        return kick;
+        return snare;
     }
   }
 
   playSound = () => {
-    console.log('url: ', this.url)
+    console.log("prop: ", this.props.fx.fx);
+    console.log("kisfaszom :", this.props);
     const url = this.handleSwitchSound(this.props.sound.sound);
-    console.log('props fx: ', this.props.fx)
     const fx = this.handleSwitchFx(this.props.fx.fx);
-
+    console.log("fx", fx);
     new Tone.Player({
       url,
       autostart: true,
