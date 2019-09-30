@@ -8,22 +8,31 @@ class FXPanel extends Component {
   state = { delayFxStatus: false, reverbFxStatus: false };
 
   handleSetFx = fx => {
-    if (this.state.fxStatus === false) {
-      this.props.setFx(fx);
-      this.setState({
-        [fx + "FxStatus"]: true,
-        [fx + "ButtonClass"]: "fx_button-on",
-      });
-    } else {
-      this.props.setFx("zero");
-      this.setState({
-        [fx + "FxStatus"]: false,
-        [fx + "ButtonClass"]: "fx_button",
-      });
-    }
+    console.log("fx select", fx);
+    this.props.setFx(fx);
   };
 
+  // handleSetFx = fx => {
+  //   console.log("fx: ", fx);
+  //   if (this.state.delayFxStatus === false) {
+  //     this.props.setFx(fx);
+  //     console.log(fx, this.state.fxStatus);
+  //     this.setState({
+  //       [fx + "FxStatus"]: true,
+  //       [fx + "ButtonClass"]: "fx_button-on",
+  //     });
+  //   } else {
+  //     this.props.setFx("zero");
+  //     console.log(fx, this.state.fxStatus);
+  //     this.setState({
+  //       [fx + "FxStatus"]: false,
+  //       [fx + "ButtonClass"]: "fx_button",
+  //     });
+  //   }
+  // };
+
   render() {
+    console.log("fxstate: ", this.state);
     const delayButtonClass = this.state.delayFxStatus
       ? "fx_button-on"
       : "fx_button";

@@ -37,13 +37,10 @@ class Pad extends Component {
   // }).connect(this.handleSwitchFx(this.props.fx.fx));
 
   handleSwitchFx(param) {
-    console.log("param", param);
     switch (param) {
       case "delay":
         return delay;
       case "reverb":
-        console.log("param:", param);
-        console.log(reverb);
         return reverb;
       default:
         return delay;
@@ -51,7 +48,6 @@ class Pad extends Component {
   }
 
   handleSwitchSound(param) {
-    console.log("param: ", param);
     switch (param) {
       case "kick":
         return kick;
@@ -64,7 +60,6 @@ class Pad extends Component {
 
   playSound = () => {
     console.log("prop: ", this.props.fx.fx);
-    console.log("kisfaszom :", this.props);
     const url = this.handleSwitchSound(this.props.sound.sound);
     const fx = this.handleSwitchFx(this.props.fx.fx);
     console.log("fx", fx);
